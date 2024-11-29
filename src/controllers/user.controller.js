@@ -26,3 +26,12 @@ export const createUser = async(req,res) =>{
         return res.status(500).json(error)
     }
 }
+
+export const getUsers = async(req, res) =>{
+    try {
+        const users = await User.find();
+        res.json(users);
+    } catch (error) {
+        return res.status(500).json(error)
+    }
+}
