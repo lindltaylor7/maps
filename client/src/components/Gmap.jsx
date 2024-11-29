@@ -100,6 +100,7 @@ const MyComponent = ({
         onLoad={onLoad}
         onUnmount={onUnmount}
         onClick={onClickGmap}
+        gestureHandling="greedy"
       >
         <Marker position={center}></Marker>
         {markerPosition && <Marker position={markerPosition} />}
