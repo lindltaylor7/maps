@@ -2,6 +2,7 @@ import { useState } from "react";
 import Gmap from "./components/Gmap";
 import { useForm } from "react-hook-form";
 import { createUserRequest } from "./api/users";
+
 const App = () => {
   const { register, handleSubmit, reset } = useForm();
 
@@ -17,9 +18,16 @@ const App = () => {
     setLongitude(longitude);
   };
 
+  const [address, setAddress] = useState("");
+
+  const setValueAddress = (address) => {
+    setAddress(address);
+  };
+
   const onSubmit = handleSubmit((data) => {
     data.latitude = latitude;
     data.longitude = longitude;
+    data.address = address;
     console.log(data);
     createUser(data);
   });
@@ -98,21 +106,19 @@ const App = () => {
           </div>
 
           <label htmlFor="address">Dirección</label>
-          <input
+          {/* <input
             type="text"
             {...register("address", { required: true })}
             className="w-full rounded p-2 my-2 bg-zinc-300"
-          />
-
-          <small>
-            Indique su dirección en el mapa a continuación (Opcional)
-          </small>
+          /> */}
 
           <Gmap
             long={longitude}
             lat={latitude}
+            address={address}
             setValueLatitude={setValueLatitude}
             setValueLongitude={setValueLongitude}
+            setValueAddress={setValueAddress}
           />
 
           <label htmlFor="counseling">

@@ -1,5 +1,10 @@
 import { useState, useCallback } from "react";
-import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
+import {
+  GoogleMap,
+  useJsApiLoader,
+  Marker,
+  Autocomplete,
+} from "@react-google-maps/api";
 
 const containerStyle = {
   width: "100%",
@@ -11,10 +16,17 @@ const center = {
   lng: -75.21530245338104,
 };
 
-const MyComponent = ({ long, lat, setValueLongitude, setValueLatitude }) => {
+const MyComponent = ({
+  long,
+  lat,
+  setValueLongitude,
+  setValueLatitude,
+  setValueAddress,
+}) => {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: import.meta.env.VITE_REACT_APP_CLIENT_ID,
+    libraries: ["places"],
   });
 
   const [map, setMap] = useState(null);
@@ -23,11 +35,11 @@ const MyComponent = ({ long, lat, setValueLongitude, setValueLatitude }) => {
 
   const [markerPosition, setMarkerPosition] = useState(null);
 
+  const [autocomplete, setAutocomplete] = useState(null);
+
   const onLoad = useCallback(function callback(map) {
-    // This is just an example of getting and using the map instance!!! don't just blindly copy!
     const bounds = new window.google.maps.LatLngBounds(center);
     map.fitBounds(bounds);
-
     setMap(map);
   }, []);
 
@@ -45,8 +57,42 @@ const MyComponent = ({ long, lat, setValueLongitude, setValueLatitude }) => {
     setMarkerPosition({ lat, lng });
   };
 
+  const onPlaceChanged = () => {
+    if (autocomplete) {
+      const place = autocomplete.getPlace();
+      if (place.geometry) {
+        const { lat, lng } = place.geometry.location;
+        setValueLatitude(lat());
+        setValueLongitude(lng());
+        setValueAddress(autocomplete.getPlace().formatted_address);
+        setCoordenates(`Lat: ${lat()}, Lng: ${lng()}`);
+        setMarkerPosition({ lat: lat(), lng: lng() });
+        map.panTo({ lat: lat(), lng: lng() });
+      }
+    }
+  };
+
   return isLoaded ? (
     <>
+      <Autocomplete onLoad={setAutocomplete} onPlaceChanged={onPlaceChanged}>
+        <input
+          type="text"
+          placeholder="Dirección"
+          style={{
+            width: "100%",
+            height: "40px",
+            marginBottom: "10px",
+            backgroundColor: "rgb(212 212 215)",
+            borderRadius: "5px",
+            paddingLeft: "10px",
+            fontSize: "16px",
+            fontWeight: "normal",
+            color: "black",
+          }}
+        />
+      </Autocomplete>
+
+      <small>Indique su dirección en el mapa a continuación (Opcional)</small>
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
