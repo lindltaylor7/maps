@@ -21,13 +21,7 @@ app.use(cors({
 app.use(morgan('dev'))
 app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.send('Hello, World!')
-})
-
 connectDB()
-
-
 
 app.use("/api", userRoutes)
 
