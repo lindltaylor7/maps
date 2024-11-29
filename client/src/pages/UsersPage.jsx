@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getUsersRequest } from "../api/users";
+import CardUser from "../components/CardUser";
 
 const UsersPage = () => {
   const [users, setUsers] = useState([]);
@@ -18,7 +19,12 @@ const UsersPage = () => {
       <h3 className="text-2xl font-semibold">Usuarios registrados</h3>
       <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-2">
         {users.map((user) => (
-          <p key={user._id}>{user}</p>
+          <CardUser
+            key={user._id}
+            user={user}
+            setUsers={setUsers}
+            users={users}
+          />
         ))}
       </div>
     </>

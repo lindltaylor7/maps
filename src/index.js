@@ -5,17 +5,17 @@ import userRoutes from './routes/user.routes.js'
 import cors from "cors"
 import dotenv from "dotenv"
 
-import path from 'path';
+/* import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = path.dirname(__filename); */
 
 const app = express();
 
 dotenv.config()
 app.use(cors({
-    origin: 'https://maps-vkuj.onrender.com/',
+    origin: 'https://maps-vkuj.onrender.com',
     credentials: true
 }))
 app.use(morgan('dev'))
