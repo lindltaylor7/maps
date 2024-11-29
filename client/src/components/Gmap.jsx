@@ -14,7 +14,7 @@ const center = {
 const MyComponent = ({ long, lat, setValueLongitude, setValueLatitude }) => {
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
-    googleMapsApiKey: "",
+    googleMapsApiKey: process.env.API_KEY_MAPS,
   });
 
   const [map, setMap] = useState(null);
@@ -58,7 +58,7 @@ const MyComponent = ({ long, lat, setValueLongitude, setValueLatitude }) => {
         <Marker position={center}></Marker>
         {markerPosition && <Marker position={markerPosition} />}
       </GoogleMap>
-      {coordenates}
+      <p>{coordenates}</p>
     </>
   ) : (
     <></>

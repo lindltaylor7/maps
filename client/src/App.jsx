@@ -76,7 +76,7 @@ const App = () => {
               />
               <label
                 htmlFor="yes"
-                className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-600"
               >
                 Si
               </label>
@@ -90,7 +90,7 @@ const App = () => {
               />
               <label
                 htmlFor="no"
-                className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-600"
               >
                 No
               </label>
@@ -118,18 +118,68 @@ const App = () => {
           <label htmlFor="counseling">
             ¿Necesita consejería sobre algún tema?
           </label>
-          <input
-            type="text"
-            {...register("counseling", { required: true })}
-            className="w-full rounded p-2 my-2 bg-zinc-300"
-          />
+          <div>
+            <div className="flex items-center mb-4">
+              <input
+                {...register("counseling", { required: true })}
+                type="radio"
+                value={1}
+                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              />
+              <label
+                htmlFor="yes"
+                className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-600"
+              >
+                Si
+              </label>
+            </div>
+            <div className="flex items-center mb-4">
+              <input
+                {...register("counseling", { required: true })}
+                type="radio"
+                value={0}
+                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              />
+              <label
+                htmlFor="no"
+                className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-600"
+              >
+                No
+              </label>
+            </div>
+          </div>
 
           <label htmlFor="visit">¿Necesita visita pastoral urgente?</label>
-          <input
-            type="text"
-            {...register("visit", { required: true })}
-            className="w-full rounded p-2 my-2 bg-zinc-300"
-          />
+          <div>
+            <div className="flex items-center mb-4">
+              <input
+                {...register("visit", { required: true })}
+                type="radio"
+                value={1}
+                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              />
+              <label
+                htmlFor="yes"
+                className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-600"
+              >
+                Si
+              </label>
+            </div>
+            <div className="flex items-center mb-4">
+              <input
+                {...register("visit", { required: true })}
+                type="radio"
+                value={0}
+                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              />
+              <label
+                htmlFor="no"
+                className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-600"
+              >
+                No
+              </label>
+            </div>
+          </div>
 
           <label htmlFor="membership">¿Ha llevado la clase de membresía?</label>
           <div>
@@ -142,7 +192,7 @@ const App = () => {
               />
               <label
                 htmlFor="yes"
-                className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-600"
               >
                 Si
               </label>
@@ -156,7 +206,7 @@ const App = () => {
               />
               <label
                 htmlFor="no"
-                className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-600"
               >
                 No
               </label>
