@@ -15,7 +15,7 @@ const app = express();
 
 dotenv.config()
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://maps-vkuj.onrender.com/',
     credentials: true
 }))
 app.use(morgan('dev'))
