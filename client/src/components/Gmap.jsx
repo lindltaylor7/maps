@@ -96,11 +96,11 @@ const MyComponent = ({
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={16}
+        zoom={10}
         onLoad={onLoad}
         onUnmount={onUnmount}
         onClick={onClickGmap}
-        gestureHandling="greedy"
+        options={{ gestureHandling: "greedy" }}
       >
         <Marker position={center}></Marker>
         {markerPosition && <Marker position={markerPosition} />}
