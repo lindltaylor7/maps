@@ -1,51 +1,54 @@
-import { DataTypes } from "sequelize";
-import { sequelize } from "../db.js";
+import mongoose from "mongoose"
 
-export const User =  sequelize.define('User', {
+const userSchema =  new mongoose.Schema({
     name:{
-        type: DataTypes.STRING,
-        allowNull: false
+        type: String,
+        required: true
     },
     age:{
-        type: DataTypes.INTEGER,
-        allowNull: false
+        type: Number,
+        required: true
     },
     birthDate:{
-        type: DataTypes.DATEONLY,
-        allowNull: false
+        type: Date,
+        required: true,
+        default: Date.now
     },
     convertionDate:{
-        type: DataTypes.DATEONLY,
-        allowNull: false
+        type: Date,
+        required: true,
+        default: Date.now
     },
     baptized:{
-        type: DataTypes.BOOLEAN,
-        allowNull: false
+        type: Boolean,
+        required: true
     },
     address:{
-        type: DataTypes.STRING,
-        allowNull: false
+        type: String,
+        required: true
     },
     latitude:{
-        type: DataTypes.DECIMAL(10, 6),
-        allowNull: false
+        type: mongoose.Types.Decimal128,
+        required: true
     },
     longitude:{
-        type: DataTypes.DECIMAL(10, 6),
-        allowNull: false
+        type: mongoose.Types.Decimal128,
+        required: true
     },
     counseling:{
-        type: DataTypes.BOOLEAN,
-        allowNull: false
+        type: Boolean,
+        required: true
     },
     visit:{
-        type: DataTypes.BOOLEAN,
-        allowNull: false
+        type: Boolean,
+        required: true
     },
     membership:{
-        type: DataTypes.BOOLEAN,
-        allowNull: false
+        type: Boolean,
+        required: true
     }
 },{
     timestamps: true
 })
+
+export default mongoose.model('User',userSchema);

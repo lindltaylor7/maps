@@ -1,18 +1,10 @@
-import { Sequelize } from "sequelize";
+import mongoose from "mongoose";
 
-export const sequelize = new Sequelize("church", "root", "", {
-  host: "localhost",
-  dialect: "mysql",
-  logging: false,
-});
-
-
-export const connectDB = async() =>{
+export const connectDB = async () =>{
     try {
-        await sequelize.authenticate()
-        console.log('DB connected');
+        await mongoose.connect(process.env.DB_URL)
+        console.log('DB is connected');
     } catch (error) {
         console.log(error);
     }
 }
-
